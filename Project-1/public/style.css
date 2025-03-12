@@ -1,0 +1,620 @@
+/* ============================ Common CSS ========================== */
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+img{
+    max-width: 100%;
+    display:block;
+}
+a{
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+}
+.container{
+    max-width: 1200px;
+    padding: 32px 32px;
+    margin: 0 auto;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+.col-1{width: 8.33%;}
+.col-2{width: 16.66%;}
+.col-3{width: 25%;}
+.col-4{width: 33.33%;}
+.col-5{width: 41.66%;}
+.col-6{width: 50%;}
+.col-7{width: 58.33%;}
+.col-8{width: 66.66%;}
+.col-9{width: 75%;}
+.col-10{width: 83.33%;}
+.col-11{width: 91.66%;}
+.col-12{width: 100%;}
+
+body{
+    font-family: 'Schibsted Grotesk' , 'Lora';
+    color:#000;
+    overflow-x:hidden ;
+}
+.d-flex{
+    display: flex;
+}
+/* =========================== Component ============================== */
+.btn{
+color: black;
+background-color: white;
+cursor :pointer;
+font-size :12px;
+height :44px;
+border: 2px solid black;
+border-radius: 50px;
+margin-right: 25px;
+font-weight: 700;
+padding: 0px 25px;
+}
+.btn:hover{
+    color: white ;
+    background-color: black;
+}
+/*============== Header ==============*/
+.head-buttons button {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+}
+.navbar .container-fluid{
+    width: 100%;
+    height: 108px;
+}
+.navbar-brand{
+    width: 60%;
+}
+.nav-item{
+    padding-right: 50px;
+}
+.navbar-nav li a {
+    font-weight: 700;
+}
+.navbar-brand{
+    margin-left: 35px;
+}
+.btn-n{
+    color: white;
+    background-color: black;
+    cursor :pointer;
+    font-size :12px;
+    height :44px;
+    border: 3px solid black;
+    border-radius: 50px;
+    margin-right: 25px;
+    padding: 0 15px;
+    font-weight: 700;
+}
+/*============== Banner ==============*/
+.btn-s{
+    color: black;
+    background-color: white;
+    cursor :pointer;
+    font-size :12px;
+    height :35px;
+    border: 3px solid black;
+    border-radius: 50px;
+    margin-right: 25px;
+    padding: 0 15px;
+    font-weight: 700;
+}
+.btn-s:hover{
+    color: white ;
+    background-color: black;
+}
+.banner-head button{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+}
+.design{
+    font-family: 'lora';
+}
+.heading{
+    font-size: 96px;
+}
+.join-fam{
+    padding-right: 15px;
+}
+.join-fam a i {
+    font-size: 25px;
+}
+.btn-f{
+    color: black;
+    background-color: white;
+    cursor :pointer;
+    font-size :12px;
+    height :35px;
+    border: 3px solid black;
+    border-radius: 50px;
+    margin-right: 25px;
+    padding: 0 30px;
+    font-weight: 700;
+    height: 55px;
+}
+.btn-f:hover{
+  background-color: black;
+  color: #fff;
+}
+.banner-body button {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 32px;
+}
+.banner-data p{
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 0px;
+}
+.main-icon{
+    padding-top: 25px;
+}
+.main-icon i{
+    padding-top:20px;
+}
+/* ============== images ============== */
+.images-section{
+    width: 100%; 
+    white-space: nowrap;
+}
+.col-3 img{
+    height: 325px;
+    width: 356px;
+}
+/*============= Our Clients =============== */
+.Our-Clients{
+    padding: 64px 96px;
+}
+.spacing{
+    padding-right: 40px;
+}
+.letter{
+    padding-right: 150px;
+}
+/* =========services============ */
+.heading-top h1{
+    font-weight: 700;
+    font-size: 64px;
+}
+.heading-top p{
+    font-size:24px;
+    font-style:italic;
+    font-weight:500;
+    padding-bottom:20px ;
+}
+.services .container{
+    border-top: #000 3px solid;
+}
+.heading-top .change{
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+}
+.service-heading h1{
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 58px;
+    cursor: pointer;
+    padding-bottom: 50px;
+}
+/* ================ project ================= */
+.Projects .container{
+    border-top: #000 3px solid;
+}
+.project-heading p{
+    font-size:24px;
+    font-style:italic;
+    font-weight:500;
+    margin: 0;
+}
+.project-heading h1{
+    font-weight: 700;
+    font-size: 64px;
+    margin: 0;
+}
+.project-image img{
+    width: 100%;
+    padding-bottom: 30px;
+
+}
+.main-button .btn{
+    width: 100%;
+}
+.project-heading .change{
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    padding-bottom: 30px;
+}
+.multi-header h1{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+}
+.multi-header h1:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.multi-button button{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+}
+.content-datas button{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+}
+.multi-header p{
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 400;
+}
+.multi-button{
+    margin-bottom: 35px;
+}
+.content-datas h1{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    padding-top: 20px;
+}
+.content-datas h1:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.content-datas p{
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 400;
+}
+.content-datas img{
+    height: 300px;
+    width: 500px;
+}
+.project-button {
+    padding-bottom: 40px;
+}
+.main-button{
+    padding-bottom: 30px;
+}
+.main-button button{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 32px;
+    cursor: pointer;
+}
+/* ================ Testimonials ================ */
+.testimonials .container{
+    border-top: #000 3px solid;
+}
+.testimonials p{
+    font-size:24px;
+    font-style:italic;
+    font-weight:500;
+    margin: 0;
+}
+.testimonials h1{
+    font-weight: 700;
+    font-size: 64px;
+    margin: 0;
+    padding-bottom: 35px;
+}
+.carousel-item h2{
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 65px;
+    padding-bottom: 15px;
+}
+.carousel-item img{
+    pointer-events: none;
+    user-select: none;
+    display: block;
+    width: 6%;
+    height: 50%;
+    border-radius:50%;
+    margin-right: 20px;
+}
+.test-content .info h2{
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    padding: 0;
+    margin: 0;
+}
+.test-content .info p{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+}
+.test-content .info{
+    padding-top: 8px;
+}
+/*======================== Career /*======================== */
+.Career .container{
+    border-top: #000 3px solid;
+}
+.Career-header p{
+    font-size:24px;
+    font-style:italic;
+    font-weight:500;
+    margin: 0;
+}
+.Career-header h1{
+    font-weight: 700;
+    font-size: 64px;
+    margin: 0;
+    padding-bottom: 25px;
+}
+.Career-header .change{
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    padding-bottom: 45px;
+}
+.sub-group{
+    padding: 48px 24px;
+}
+.sub-headings h1{
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 58px;
+    margin-bottom: 25px;
+}
+.sub-headings p{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    font-style: normal;
+}
+.career-data ul li{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    font-style: normal;
+    padding-bottom: 15px;
+}
+.career-heading h1{
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 58px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+}
+.career-part{
+    margin-top: 35px;
+    padding-top: 50px;
+}
+.career-part{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    font-style: normal;
+}
+.btn-ns{
+    color: white;
+    background-color: black;
+    cursor :pointer;
+    font-size :12px;
+    height :44px;
+    border: 3px solid black;
+    border-radius: 50px;
+    margin-right: 25px;
+    padding: 0 15px;
+    font-weight: 700;
+    width: 125px;
+    height: 55px;
+}
+/* ============== Year ============= */
+.plans .year{
+    height: 200px;
+    width: 379px;
+}
+.plans .year h1{
+    font-size: 64px;
+    font-weight: 700;
+    padding-left: 150px;
+}
+.plans .year p{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    font-style: normal;
+    padding-left: 150px;
+}
+.plans .clients{
+    height: 200px;
+    width: 379px;
+}
+.plans .clients h1{
+    font-size: 64px;
+    font-weight: 700;
+    padding-left: 125px;
+}
+.plans .clients p{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    font-style: normal;
+    padding-left: 130px;
+}
+.plans .projects{
+    height: 200px;
+    width: 380px;
+}
+.plans .projects h1{
+    font-size: 64px;
+    font-weight: 700;
+    padding-left: 130px;
+}
+.plans .projects p{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    font-style: normal;
+    padding-left: 150px;
+}
+.plans .awards{
+    height: 200px;
+    width: 379px;
+}
+.plans .awards h1{
+    font-size: 64px;
+    font-weight: 700;
+    padding-left: 150px;
+}
+.plans .awards p{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    font-style: normal;
+    padding-left: 150px;
+}
+/* ============== blog ============= */
+.head-button .btn{
+    width: 100%;
+}
+.blog{
+    padding-bottom: 32px;
+}
+.blog .container{
+    border-top: #000 3px solid;
+}
+.Blog-header p{
+    font-size:24px;
+    font-style:italic;
+    font-weight:500;
+    margin: 0;
+}
+.Blog-header h1{
+    font-weight: 700;
+    font-size: 64px;
+    margin: 0;
+    padding-bottom: 25px;
+}
+.blog-data p{
+    margin-top: 15px;
+}
+.blog-data h2{
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 36px;
+}
+.blog-data h2:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.blog-data .blogs{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    padding-bottom: 30px;
+}
+.head-button button{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 32px;
+}
+.head-button .btn{
+    height: 55px;
+}
+/* ============ Contacts ============ */
+.contacts .container{
+    border-top: #000 3px solid;
+}
+.contacts{
+    padding-bottom: 64px;
+}
+.Contacts-header p{
+    font-size:24px;
+    font-style:italic;
+    font-weight:500;
+    margin: 0;
+}
+.Contacts-header h1{
+    font-weight: 700;
+    font-size: 64px;
+    margin: 0;
+    padding-bottom: 25px;
+    line-height: 72px;
+}
+.Contacts-header .change{
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    padding-bottom: 45px;
+}
+.contact{
+    margin-bottom: 50px;
+}
+.contact p{
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+}
+.contact h1{
+    font-weight: 700;
+    font-size: 48px;
+    margin: 0;
+    padding-bottom: 25px;
+    line-height: 58px;
+}
+.contact button{
+    width: 170px;
+    height: 55px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 32px;
+}
+.base p{
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+}
+.base h3{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 39px;
+}
+.base .change{
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+}
+.social p{
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+}
+.social h3{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 39px;
+}
+.social h3:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+/* =========== Footer ============ */
+footer{
+    padding-bottom: 25px;
+}
+.design{
+    padding-left: 30px;
+}
+.privacy{
+    padding-left: 745px;
+}
+.privacy p{
+    padding-left: 25px;
+}

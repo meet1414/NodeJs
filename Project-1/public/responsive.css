@@ -1,0 +1,126 @@
+/* header */
+@media(max-width:1195px){
+    .head-buttons{
+        display: none;
+    }
+}
+/* banner */
+@media(max-width:1105px){
+    .heading {
+        font-size: 72px;
+    }
+    .banner-body button {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 16px;
+    }
+    .btn-f {
+        padding: 0 15px;
+    }
+}
+@media(max-width:855px){
+    .heading {
+        font-size: 35px;
+    }
+    .btn-f {
+        padding: 5px;
+    }
+}
+@media(max-width:575px){
+    button{
+        width: 100%;
+    }
+}
+
+/*  Our Clients  */
+@media(max-width:770px){
+    .main-flow{
+        flex-direction: column;
+        align-items: center;
+    }
+    .main-flow .letter{
+        padding-right:0px ;
+
+    }
+    .service-client p{
+        text-align: center;
+    }
+
+}
+/* Services */
+@media(max-width:982px){
+    .heading-top h1{
+        font-weight: 700;
+        font-size: 40px;
+    }
+    .service-heading h1{
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 29px;
+        cursor: pointer;
+        padding-bottom: 25px;
+    }
+}
+/* Career */
+@media(max-width:1250px){
+    .sub-headings p{
+        display: none;
+    }
+    .career-data ul {
+        display: none;
+    }
+    .sub-group .col-3{
+        display: none;
+    }
+    .sub-headings h1 {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 22px;
+        margin-bottom: 20px;
+    }
+}
+/* Year */
+@media(max-width:709px){
+    .plans{
+        flex-direction: column;
+        align-items: center; 
+    }
+    .plans .year{
+        height: 150px;
+        width: 379px;
+    }
+    .plans .year h1{
+        font-size: 32px;
+        font-weight: 700;
+        padding-left: 170px;
+    }
+    .plans .clients h1{
+        font-size: 32px;
+        font-weight: 700;
+        padding-left: 160px;
+    }
+    .plans .clients p{
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 28px;
+        font-style: normal;
+        padding-left: 150px;
+    }
+    .plans .projects h1{
+        font-size: 32px;
+        font-weight: 700;
+        padding-left: 155px;
+    }
+    .plans .awards h1{
+        font-size: 32px;
+        font-weight: 700;
+        padding-left: 170px;
+    }
+}
+/* Contacts */
+@media(max-width:1200px){
+    .contacts .row{
+        display: none;
+    }
+}
+

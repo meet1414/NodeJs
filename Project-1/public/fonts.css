@@ -1,0 +1,40 @@
+@font-face {
+    font-family:"Schibsted Grotesk";
+    src: url(../fonts/SchibstedGrotesk-Black.ttf);
+}
+@font-face {
+    font-family:"Schibsted Grotesk";
+    src: url(../fonts/SchibstedGrotesk-Bold.ttf);
+}
+@font-face {
+    font-family:"Schibsted Grotesk";
+    src: url(../fonts/SchibstedGrotesk-ExtraBold.ttf);
+}
+@font-face {
+    font-family:"Schibsted Grotesk";
+    src: url(../fonts/SchibstedGrotesk-Medium.ttf);
+}
+@font-face {
+    font-family:"Schibsted Grotesk";
+    src: url(../fonts/SchibstedGrotesk-Regular.ttf);
+}
+@font-face {
+    font-family:"Schibsted Grotesk";
+    src: url(../fonts/SchibstedGrotesk-SemiBold.ttf);
+}
+@font-face {
+    font-family:"Lora";
+    src: url(../fonts/Lora-Bold.ttf);
+}
+@font-face {
+    font-family:"Lora";
+    src: url(../fonts/Lora-Medium.ttf);
+}
+@font-face {
+    font-family:"Lora";
+    src: url(../fonts/Lora-Regular.ttf);
+}
+@font-face {
+    font-family:"Lora";
+    src: url(../fonts/Lora-SemiBold.ttf);
+}
