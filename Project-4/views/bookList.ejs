@@ -1,0 +1,171 @@
+<div align="center" class="table-container">
+    <h2>Books Information</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>BookName</th>
+                <th>Author</th>
+                <th>Publication Date</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.map((user, i)=> { %>
+                <tr>
+                    <td>
+                        <%= i+1 %>
+                    </td>
+                    <td>
+                        <%= user.bookname %>
+                    </td>
+                    <td>
+                        <%= user.author %>
+                    </td>
+                    <td>
+                        <%= user.publicationdate %>
+                    </td>
+                    <td>
+                        <img src="/<%= user.image %>" width="100" height="100" alt="Book Image">
+                    </td>
+
+                    <td>
+                        <%= user.price %>
+                    </td>
+                    <td>
+                        <%= user.description %>
+                    </td>
+                    <td>
+                        <%= user.quantity %>
+                    </td>
+                    <td><a href="/edit-user/<%= user.id %>" class="edit-btn">Edit</a></td>
+                    <td><a href="/delete-user/<%= user.id %>" class="delete-btn">Delete</a></td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+    <br>
+    <a href="/" class="back-button">Back to Main Page</a>
+</div>
+
+<!-- Add some styling -->
+<style>
+    /* keyframes */
+
+    @keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+
+    .back-button {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 15px;
+    background-color: #ff5722; /* Opposite of blue */
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #d84315; /* Darker warm shade */
+    transform: scale(1.05);
+}
+
+
+    body {
+        background-color: #f4f7fc;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(-45deg, #ff7e5f, #feb47b, #ffb88c, #ff6f61);
+        background-size: 400% 400%;
+        animation: gradientAnimation 10s ease infinite;
+    }
+
+    .table-container {
+    width: 80%;
+    margin: 30px auto;
+    padding: 20px;
+    background: linear-gradient(-45deg, #ff6ec4, #7873f5, #42e695, #3bb2b8);
+
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th,
+    td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background: #007bff;
+        color: white;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+        transition: 0.3s ease;
+    }
+
+    /* Buttons */
+    .edit-btn,
+    .delete-btn {
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: 0.3s ease;
+    }
+
+    .edit-btn {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .edit-btn:hover {
+        background-color: #218838;
+    }
+
+    .delete-btn {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .delete-btn:hover {
+        background-color: #c82333;
+    }
+</style>

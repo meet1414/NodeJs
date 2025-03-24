@@ -1,0 +1,146 @@
+<div class="form-container">
+    <h2>Edit Book Info</h2>
+    <form method="post" action="/update-user/<%= user.id %>" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td>Book Name:</td>
+                <td><input type="text" name="bookname" value="<%= user.bookname %>" required /></td>
+            </tr>
+            <tr>
+                <td>Author:</td>
+                <td><input type="text" name="author" value="<%= user.author %>" required /></td>
+            </tr>
+            <tr>
+                <td>Publication Date:</td>
+                <td><input type="date" name="publicationdate" value="<%= user.publicationdate %>" required /></td>
+            </tr>
+            <tr>
+                <td>Price:</td>
+                <td><input type="number" name="price" value="<%= user.price %>" required /></td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td><input type="text" name="description" value="<%= user.description %>" required /></td>
+            </tr>
+            <tr>
+                <td>Quantity:</td>
+                <td><input type="number" name="quantity" value="<%= user.quantity %>" required /></td>
+            </tr>
+            <!-- Image Upload Row -->
+            <tr>
+                <td>Upload Image:</td>
+                <td>
+                    <input type="file" class="form-control" name="image" />
+                </td>
+                <td>
+                    <img src="/<%= user.image %>" alt="Book Image" class="img-thumbnail" width="100" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Update Book" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
+<style>
+    /* keyframes */
+
+    @keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+    /* Centering the form */
+    body {
+        background-color: #f4f7fc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(-45deg, #84fab0, #8fd3f4, #a6ffcb, #42a5f5);
+
+
+        background-size: 400% 400%;
+        animation: gradientAnimation 10s ease infinite;
+    }
+
+    /* Form container */
+    .form-container {
+    background: linear-gradient(-45deg, #ff758c, #ff7eb3, #ff9966, #ff3d54);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: auto;
+    color: white;
+}
+
+
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Styling the table */
+    table {
+        width: 100%;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    /* Styling the submit button */
+    input[type="submit"] {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 12px 15px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        width: 100%;
+    }
+
+    /* Hover effect on the button */
+    input[type="submit"]:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
+
+    /* Back to Main Page Button */
+    .back-button {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: 0.3s ease;
+    }
+
+    .back-button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+</style>
