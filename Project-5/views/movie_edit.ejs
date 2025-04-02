@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Input Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .form-container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-section {
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    .form-section:last-child {
+      border-bottom: none;
+    }
+
+    .checkbox-group,
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 15px;
+    }
+
+    .checkbox-group label,
+    .radio-group label {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+  <div class="container">
+    <div class="form-container">
+      <h2 class="text-center mb-4">Movie Edit Form</h2>
+
+      <form action="/update-movie/<%=movie._id%>" method="post" enctype="multipart/form-data">
+        <div class="form-section">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="movie_name" class="form-label">Movie Name</label>
+              <input type="text" class="form-control" id="movie_name" value="<%= movie.moviename%>" name="moviename"
+                required />
+            </div>
+            <div class="col-md-6">
+              <label for="language" class="form-label">Language</label>
+              <input type="text" class="form-control" id="language" value="<%= movie.language%>" name="language"
+                required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label for="hours" class="form-label">Hours</label>
+              <input type="number" class="form-control" id="hours" name="hours" value="<%= movie.hours%>" required />
+            </div>
+            <div class="col-md-4">
+              <label for="minutes" class="form-label">Minutes</label>
+              <input type="number" class="form-control" id="minutes" value="<%= movie.minutes%>" name="minutes"
+                required />
+            </div>
+            <div class="col-md-4">
+              <label for="date" class="form-label">Release Date</label>
+              <input type="date" class="form-control" id="date" value="<%= movie.date.toISOString().split('T')[0] %>"
+                name="date" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="votes" class="form-label">Votes</label>
+              <input type="number" class="form-control" id="votes" value="<%= movie.votes%>" step="any" name="votes"
+                required />
+            </div>
+            <div class="col-md-6">
+              <label for="rating" class="form-label">Rating</label>
+              <input type="number" class="form-control" id="rating" name="rating" value="<%= movie.rating%>" min="0"
+                max="10" step="any" required />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="about" class="form-label">About</label>
+            <textarea class="form-control" id="about" name="about" rows="3" style="resize: none" required>
+                  <%= movie.about%></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="image" class="form-label">Movie Poster</label>
+            <input class="form-control" type="file" id="image" name="image" />
+            <img src="/uploads/<%= movie.image %>" width="100" alt="Movie Poster" />
+          </div>
+        </div>
+
+        <!-- Category Section -->
+        <div class="form-section">
+          <h5 class="mb-3">Category</h5>
+          <% const selectedGenres=movie.genre || []; %>
+            <div class="checkbox-group">
+              <div class="form-check">
+                <label class="form-check-label" for="genreAction">
+                  <input class="form-check-input" type="checkbox" name="genre" value="Action" id="genreAction"
+                    <%=selectedGenres.includes('Action') ? 'checked' : '' %> />Action
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label" for="genreComedy">
+                  <input class="form-check-input" type="checkbox" name="genre" value="Comedy" id="genreComedy"
+                    <%=selectedGenres.includes('Comedy') ? 'checked' : '' %> />Comedy
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="genreDrama">
+                  <input class="form-check-input" type="checkbox" name="genre" value="Drama" id="genreDrama"
+                    <%=selectedGenres.includes('Drama') ? 'checked' : '' %> />Drama
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label" for="genreThriller">
+                  <input class="form-check-input" type="checkbox" name="genre" value="Thriller" id="genreThriller"
+                    <%=selectedGenres.includes('Thriller') ? 'checked' : '' %>
+                  />Thriller
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label" for="genreRomance">
+                  <input class="form-check-input" type="checkbox" name="genre" value="Romance" id="genreRomance"
+                    <%=selectedGenres.includes('Romance') ? 'checked' : '' %>
+                  />Romance
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="genreSciFi">
+                  <input class="form-check-input" type="checkbox" name="genre" value="Science-Fiction" id="genreSciFi"
+                    <%=selectedGenres.includes('Science-Fiction') ? 'checked' : '' %>
+                  />Science Fiction
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label" for="genreCrime">
+                  <input class="form-check-input" type="checkbox" name="genre" value="Crime" id="genreCrime"
+                    <%=selectedGenres.includes('Crime') ? 'checked' : '' %> />Crime
+                </label>
+              </div>
+
+
+
+
+            </div>
+        </div>
+
+        <!-- Formats Section -->
+        <% const selectedFormats=movie.format || []; %>
+          <div class="form-section">
+            <h5 class="mb-3">Formats</h5>
+            <div class="checkbox-group">
+              <div class="form-check">
+                <label class="form-check-label" for="format2D">
+                  <input class="form-check-input" type="checkbox" name="format" value="2D" id="format2D"
+                    <%=selectedFormats.includes('2D') ? 'checked' : '' %> />2D</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="format3D">
+                  <input class="form-check-input" type="checkbox" name="format" value="3D" id="format3D"
+                    <%=selectedFormats.includes('3D') ? 'checked' : '' %> />3D</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="formatIMAX2D">
+                  <input class="form-check-input" type="checkbox" name="format" value="IMAX 2D" id="formatIMAX2D"
+                    <%=selectedFormats.includes('IMAX 2D') ? 'checked' : '' %> />IMAX
+                  2D</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="formatIMAX3D">
+                  <input class="form-check-input" type="checkbox" name="format" value="IMAX 3D" id="formatIMAX3D"
+                    <%=selectedFormats.includes('IMAX 3D') ? 'checked' : '' %> />IMAX
+                  3D</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="format4DX"><input class="form-check-input" type="checkbox"
+                    name="format" value="4DX" id="format4DX" <%=selectedFormats.includes('4DX') ? 'checked' : '' %>
+                  />4DX</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="formatDolby">
+                  <input class="form-check-input" type="checkbox" name="format" value="Dolby Cinema" id="formatDolby"
+                    <%=selectedFormats.includes('Dolby Cinema') ? 'checked' : '' %>
+                  />Dolby Cinema</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="formatScreenX"><input class="form-check-input" type="checkbox"
+                    name="format" value="ScreenX" id="formatScreenX" <%=selectedFormats.includes('ScreenX') ? 'checked'
+                    : '' %>
+                  />ScreenX</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="formatRPX">
+                  <input class="form-check-input" type="checkbox" name="format" value="RPX" id="formatRPX"
+                    <%=selectedFormats.includes('RPX') ? 'checked' : '' %> />RPX</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="formatDBox">
+                  <input class="form-check-input" type="checkbox" name="format" value="D-Box" id="formatDBox"
+                    <%=selectedFormats.includes('D-Box') ? 'checked' : '' %>
+                  />D-Box</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="formatMX4D"><input class="form-check-input" type="checkbox"
+                    name="format" value="MX4D" id="formatMX4D" <%=selectedFormats.includes('MX4D') ? 'checked' : '' %>
+                  />MX4D</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="formatUltraAVX"><input class="form-check-input" type="checkbox"
+                    name="format" value="UltraAVX" id="formatUltraAVX" <%=selectedFormats.includes('UltraAVX')
+                    ? 'checked' : '' %>
+                  />UltraAVX</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="format4K"><input class="form-check-input" type="checkbox"
+                    name="format" value="4K" id="format4K" <%=selectedFormats.includes('4K') ? 'checked' : '' %>
+                  />4K</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h5 class="mb-3">Movie Certificate</h5>
+            <div class="radio-group">
+              <div class="form-check">
+                <label class="form-check-label" for="certU">
+                  <input class="form-check-input" type="radio" name="certificate" value="U" id="certU"
+                    <%=movie.certificate==='U' ? 'checked' : '' %> required />U</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="certUA"><input class="form-check-input" type="radio"
+                    name="certificate" value="UA" id="certUA" <%=movie.certificate==='UA' ? 'checked' : '' %>
+                  />U/A</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="certA"><input class="form-check-input" type="radio"
+                    name="certificate" value="A" id="certA" <%=movie.certificate==='A' ? 'checked' : '' %> />A</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="certS">
+                  <input class="form-check-input" type="radio" name="certificate" value="S" id="certS"
+                    <%=movie.certificate==='S' ? 'checked' : '' %> />S</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="certUA7">
+                  <input class="form-check-input" type="radio" name="certificate" value="UA7" id="certUA7"
+                    <%=movie.certificate==='UA7' ? 'checked' : '' %> />U/A
+                  7+</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="certUA13"><input class="form-check-input" type="radio"
+                    name="certificate" value="UA13" id="certUA13" <%=movie.certificate==='UA13' ? 'checked' : '' %>
+                  />U/A
+                  13+</label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="certUA16"><input class="form-check-input" type="radio"
+                    name="certificate" value="UA16" id="certUA16" <%=movie.certificate==='UA16' ? 'checked' : '' %>
+                  />U/A
+                  16+</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+          </div>
+      </form>
+      <div class="text-center">
+        <a class="btn btn-lg w-100 mt-4" href="/movie/<%=movie._id%>"
+          style="background-color: rgb(190, 64, 64); color: white">Go Back</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
