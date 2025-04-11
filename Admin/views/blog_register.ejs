@@ -1,0 +1,175 @@
+<%- include("header") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Article Submission</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .form-container {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 40px;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-weight: 600;
+      margin-top: 20px;
+      display: block;
+      color: #333;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 4px rgba(0, 123, 255, 0.2);
+    }
+
+    button {
+      width: 100%;
+      margin-top: 30px;
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    select optgroup {
+      font-weight: bold;
+      color: #444;
+    }
+
+    .emoji {
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>📝 Article Submission Form</h1>
+    <form action="/blog/blog_post" method="post" enctype="multipart/form-data">
+      
+      <label for="title">📝 Title:</label>
+      <input type="text" id="title" name="title" required />
+
+      <label for="about">📄 About:</label>
+      <textarea id="about" name="about" rows="4" required></textarea>
+
+      <label for="image">🖼️ Image:</label>
+      <input type="file" id="image" name="image" />
+
+      <label for="written_by">✍️ Written By:</label>
+      <input type="text" id="written_by" name="write" required />
+
+      <label for="visited">👣 Visited:</label>
+      <input type="number" id="visited" name="visited" min="0" value="0" />
+
+      <label for="tags">🏷️ Tags (comma separated):</label>
+      <input type="text" id="tags" name="tags" placeholder="travel, adventure, europe" />
+
+      <label for="date">📅 Date:</label>
+      <input type="date" id="date" name="date" />
+
+      <label for="time">⏰ Time:</label>
+      <input type="time" id="time" name="time" />
+
+      <label for="likes">❤️ Likes:</label>
+      <input type="number" id="likes" name="likes" min="0" value="0" />
+
+      <label for="read">📖 Read:</label>
+      <input type="number" id="read" name="read" required />
+
+      <label for="view">👁️ View:</label>
+      <input type="number" id="view" name="view" required />
+
+      <label for="blog-categories">📚 Category:</label>
+      <select name="category" id="blog-categories" required>
+        <optgroup label="💼 Business & Tech">
+          <option value="business-finance-blogs">Business Blogs</option>
+          <option value="business-finance-blogs">Finance Blogs</option>
+          <option value="marketing-seo-blogs">Marketing Blogs</option>
+          <option value="marketing-seo-blogs">SEO Blogs</option>
+          <option value="technology-gadget-blogs">Technology Blogs</option>
+          <option value="technology-gadget-blogs">Gadget Blogs</option>
+        </optgroup>
+        <optgroup label="🧠 Education & Niche">
+          <option value="educational-niche-blogs">Educational Blogs</option>
+          <option value="educational-niche-blogs">Niche Blogs</option>
+          <option value="book-writing-blogs">Book Blogs</option>
+          <option value="book-writing-blogs">Writing Blogs</option>
+        </optgroup>
+        <optgroup label="🎨 Lifestyle & Culture">
+          <option value="personal-blogs">Personal Blogs</option>
+          <option value="lifestyle-blogs">Lifestyle Blogs</option>
+          <option value="fashion-beauty-blogs">Fashion Blogs</option>
+          <option value="fashion-beauty-blogs">Beauty Blogs</option>
+          <option value="food-blogs">Food Blogs</option>
+          <option value="travel-blogs">Travel Blogs</option>
+          <option value="parenting-blogs">Parenting Blogs</option>
+        </optgroup>
+        <optgroup label="🎮 Fun & Entertainment">
+          <option value="photography-blogs">Photography Blogs</option>
+          <option value="gaming-blogs">Gaming Blogs</option>
+          <option value="entertainment-pop-culture-blogs">Entertainment Blogs</option>
+          <option value="entertainment-pop-culture-blogs">Cultural Blogs</option>
+          <option value="pet-blogs">Pet Blogs</option>
+        </optgroup>
+        <optgroup label="🧘‍♀️ Health & DIY">
+          <option value="health-fitness-blogs">Health Blogs</option>
+          <option value="health-fitness-blogs">Fitness Blogs</option>
+          <option value="diy-craft-blogs">DIY Blogs</option>
+          <option value="diy-craft-blogs">Craft Blogs</option>
+        </optgroup>
+        <optgroup label="🗞️ News & Politics">
+          <option value="news-politics-blogs">News Blogs</option>
+          <option value="news-politics-blogs">Politics Blogs</option>
+        </optgroup>
+      </select>
+
+      <button type="submit">✅ Submit Article</button>
+    </form>
+  </div>
+</body>
+</html>
+<%- include("footer") %>
