@@ -113,3 +113,16 @@ exports.updateAdmin = async (req , res) => {
         return res.redirect("back");
     }
 }
+
+exports.adminProfile = async (req, res) => {
+    try {
+      const adminId = req.cookies.admin._id; 
+  
+      const admin = await Admin.findById(adminId);
+  
+      return res.render('admin_profile', { admin });
+    } catch (error) {
+      console.error("Error fetching admin profile:", error);
+      return res.redirect('/login');
+    }
+  };
