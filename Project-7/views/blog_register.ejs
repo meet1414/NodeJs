@@ -1,0 +1,127 @@
+<%- include("header") %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📝 Article Submission Form</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f9f9f9;
+        margin: 0;
+        padding: 0;
+      }
+
+      .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 30px 40px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 25px;
+      }
+
+      label {
+        display: block;
+        margin: 15px 0 5px;
+        font-weight: bold;
+        color: #555;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 15px;
+        transition: all 0.2s ease;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+
+      button {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        margin-top: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>📝 Submit Your Article</h1>
+      <form action="/blog/blog_post" method="post" enctype="multipart/form-data">
+        <label for="title">🖋️ Title:</label>
+        <input type="text" id="title" name="title" required />
+
+        <label for="about">🗒️ About:</label>
+        <textarea id="about" name="about" rows="4" required></textarea>
+
+        <label for="image">📷 Image:</label>
+        <input type="file" id="image" name="image" required/>
+
+        <label for="written_by">👨‍💻 Written By:</label>
+        <input type="text" id="written_by" name="write" required />
+
+        <label for="visited">🌍 Visited:</label>
+        <input type="number" id="visited" name="visited" min="0" required/>
+
+        <label for="tags">🏷️ Tags:</label>
+        <input type="text" id="tags" name="tags" placeholder="travel, adventure, europe" required/>
+
+        <label for="date">📅 Date:</label>
+        <input type="date" id="date" name="date" />
+
+        <label for="time">⏰ Time:</label>
+        <input type="time" id="time" name="time" />
+
+        <label for="likes">❤️ Likes:</label>
+        <input type="number" id="likes" name="likes" min="0" required/>
+
+        <label for="read">📖 Read (minutes):</label>
+        <input type="number" id="read" name="read" required />
+
+        <label for="view">👀 View:</label>
+        <input type="number" id="view" name="view" required />
+
+        <label for="blog-categories">🗂️ Category:</label>
+        <select name="category" id="blog-categories" required>
+          <option value="food-blogs">🍔 Food Blogs</option>
+          <option value="travel-blogs">✈️ Travel Blogs</option>
+          <option value="book-writing-blogs">🖋️ Writing Blogs</option>
+          <option value="book-writing-blogs">📚 Book Blogs</option>
+          <option value="gaming-blogs">🎮 Gaming Blogs</option>
+        </select>
+
+        <button type="submit">🚀 Submit Article</button>
+      </form>
+    </div>
+  </body>
+</html>
+<%- include("footer") %>

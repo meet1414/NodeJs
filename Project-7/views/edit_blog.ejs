@@ -1,0 +1,206 @@
+<%- include("header") %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article Submission Form</title>
+    <style>
+      :root {
+        --primary-color: #4361ee;
+        --primary-hover: #3a56d4;
+        --text-color: #2b2d42;
+        --text-light: #6c757d;
+        --light-gray: #f8f9fa;
+        --white: #ffffff;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --border-radius: 12px;
+        --transition: all 0.3s ease;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--light-gray);
+        color: var(--text-color);
+        padding: 0;
+        margin: 0;
+      }
+
+      .form-container {
+        max-width: 700px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: var(--white);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.5rem;
+        color: var(--primary-color);
+      }
+
+      form label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+        font-size: 1rem;
+        color: var(--text-color);
+      }
+
+      form input,
+      form textarea,
+      form select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 8px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        font-size: 1rem;
+        transition: 0.3s ease-in-out;
+      }
+
+      form input:focus,
+      form textarea:focus,
+      form select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 10px rgba(67, 97, 238, 0.3);
+      }
+
+      form button {
+        margin-top: 20px;
+        padding: 12px 20px;
+        background-color: var(--primary-color);
+        color: var(--white);
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: 0.3s ease;
+      }
+
+      form button:hover {
+        background-color: var(--primary-hover);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group span {
+        font-size: 1.2rem;
+        color: var(--text-color);
+      }
+
+      .emoji {
+        font-size: 1.5rem;
+        margin-right: 8px;
+      }
+
+      .form-group input[type="file"] {
+        padding: 0;
+      }
+
+      .current-image {
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: var(--text-light);
+      }
+
+      select {
+        cursor: pointer;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>✏️ Edit Article</h1>
+      <form action="/blog/update-blog/<%= blog._id %>" method="post" enctype="multipart/form-data">
+        
+        <div class="form-group">
+          <label for="title"><span class="emoji">📝</span> Title:</label>
+          <input type="text" id="title" name="title" value="<%= blog.title %>" required />
+        </div>
+
+        <div class="form-group">
+          <label for="about"><span class="emoji">🗒️</span> About:</label>
+          <textarea id="about" name="about" rows="4" required><%= blog.about %></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="image"><span class="emoji">🖼️</span> Image:</label>
+          <input type="file" id="image" name="image" />
+          <% if (blog.image) { %>
+            <p class="current-image">Current Image: <%= blog.image %></p>
+          <% } %>
+        </div>
+
+        <div class="form-group">
+          <label for="write"><span class="emoji">✍️</span> Written By:</label>
+          <input type="text" id="written_by" name="write" value="<%= blog.write %>" required />
+        </div>
+
+        <div class="form-group">
+          <label for="visited"><span class="emoji">👀</span> Visited:</label>
+          <input type="number" id="visited" name="visited" min="0" value="<%= blog.visited %>" />
+        </div>
+
+        <div class="form-group">
+          <label for="tags"><span class="emoji">🏷️</span> Tags (comma separated):</label>
+          <input type="text" id="tags" name="tags" value="<%= blog.tags %>" />
+        </div>
+
+        <div class="form-group">
+          <label for="date"><span class="emoji">📅</span> Date:</label>
+          <input type="date" id="date" name="date" value="<%= blog.date ? new Date(blog.date).toISOString().substring(0, 10) : '' %>" />
+        </div>
+
+        <div class="form-group">
+          <label for="time"><span class="emoji">⏰</span> Time:</label>
+          <input type="time" id="time" name="time" value="<%= blog.time %>" />
+        </div>
+
+        <div class="form-group">
+          <label for="likes"><span class="emoji">❤️</span> Likes:</label>
+          <input type="number" id="likes" name="likes" min="0" value="<%= blog.likes %>" />
+        </div>
+
+        <div class="form-group">
+          <label for="read"><span class="emoji">⏳</span> Read (Minutes):</label>
+          <input type="number" id="read" name="read" value="<%= blog.read %>" required />
+        </div>
+
+        <div class="form-group">
+          <label for="view"><span class="emoji">👁️</span> Views:</label>
+          <input type="number" id="view" name="view" value="<%= blog.view %>" required />
+        </div>
+
+        <div class="form-group">
+          <label for="blog-categories"><span class="emoji">📂</span> Category:</label>
+          <select name="category" id="blog-categories">
+            <% const categories = [
+              "personal-blogs", "lifestyle-blogs", "fashion-beauty-blogs", "food-blogs",
+              "travel-blogs", "health-fitness-blogs", "parenting-blogs", "technology-gadget-blogs",
+              "business-finance-blogs", "marketing-seo-blogs", "diy-craft-blogs", "book-writing-blogs",
+              "news-politics-blogs", "entertainment-pop-culture-blogs", "educational-niche-blogs",
+              "photography-blogs", "gaming-blogs", "pet-blogs"
+            ]; %>
+            <% categories.forEach(category => { %>
+              <option value="<%= category %>" <%= blog.category === category ? 'selected' : '' %>>
+                <%= category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) %>
+              </option>
+            <% }); %>
+          </select>
+        </div>
+
+        <button type="submit">🖊️ Update Article</button>
+      </form>
+    </div>
+  </body>
+</html>
+<%- include("footer") %>
