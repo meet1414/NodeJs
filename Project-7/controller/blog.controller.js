@@ -30,6 +30,7 @@ const createBlog = async (req, res) => {
   req.body.image = imagePath;
 
   const blog = await Blog.create(req.body);
+  req.flash("success", "Blog Added Success");
   return res.redirect("/blog/blog_post")
 
  
@@ -58,6 +59,7 @@ const listBlog = async (req, res) => {
 
 const viewBlog = async (req, res) => {
   const blog = await Blog.findById(req.params.id);
+  req.flash("success", "New Blog Added Successfully");
   res.render("blog_view", { blog });
 };
 
@@ -66,6 +68,7 @@ const editBlog = async (req , res) => {
     try {
         let id = req.params.id;
         let blog = await Blog.findById(id);
+        req.flash("success", "Edit Blog Successfully");
         return res.render("edit_blog", { blog });
     } catch (error) {
         console.log(error);
@@ -77,6 +80,7 @@ const updateBlog = async (req, res) => {
     try {
       let id = req.params.id;
       let blog = await Blog.findById(id);
+      req.flash("success", "Blog Updated Successfully");
   
       if (!blog) {
         console.log("Blog not found...");
@@ -114,7 +118,7 @@ const deleteBlog = async (req, res) => {
   try {
     const id = req.params.id;
     let blog = await Blog.findById(id);
-
+    req.flash("success", "Blog Deleted Successfully");
     if (blog) {
     if (blog.image && blog.image !== "") {
       let imagePath = path.join(__dirname, "..", blog.image);

@@ -316,28 +316,28 @@
                 </ul>
             </nav>
         </div>
- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const filterButtons = document.querySelectorAll('.category-btn');
-            const blogCards = document.querySelectorAll('.card');
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const filterButtons = document.querySelectorAll('.category-btn');
+                const blogCards = document.querySelectorAll('.card');
 
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    const category = button.dataset.category;
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        const category = button.dataset.category;
 
-                    blogCards.forEach(card => {
-                        if (category === 'all' || card.dataset.category === category) {
-                            card.style.display = 'flex';
-                        } else {
-                            card.style.display = 'none';
-                        }
+                        blogCards.forEach(card => {
+                            if (category === 'all' || card.dataset.category === category) {
+                                card.style.display = 'flex';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
                     });
                 });
             });
-        });
-    </script>
+        </script>
     </body>
 
     </html> <%- include("footer")%>

@@ -25,6 +25,7 @@ exports.loginAdmin = async (req, res) => {
       const {email, password} = req.body;
       let admin = await Admin.findOne({email: email});
       console.log(admin)
+      req.flash("success", "Login Success");
       if(admin){
          if(admin.password == password){
             return res.redirect("/dashboard");
@@ -119,6 +120,7 @@ exports.changePassword = async (req, res) => {
           }else{
               if(newPass == confPass){
                   await Admin.findByIdAndUpdate(req.user._id, {password: newPass}, {new: true});
+                  req.flash("success", "User Password Changed Successfully");
                   console.log("Password is Changed...");
                   return res.redirect("/dashboard");
               }else{

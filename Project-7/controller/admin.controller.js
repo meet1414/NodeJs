@@ -13,7 +13,7 @@ exports.viewAdminPage = async (req, res) => {
 }
 exports.addAdminPage = async (req, res) => {
     try {
-      
+        req.flash("success", "New Admin Added Success");
         return res.render("add_admin")
     } catch (error) {
         console.log(error);
@@ -29,6 +29,7 @@ exports.addNewAdmin = async (req, res) => {
         }
         req.body.profileImage = imagePath;
         let admin = await Admin.create(req.body);
+        req.flash("success", "Admin Added Success");
         console.log("Admin Added Success");
         return res.redirect("back");
     } catch (error) {
@@ -41,6 +42,7 @@ exports.deleteAdmin = async (req, res) => {
     try {
         let id = req.params.id;
         let admin = await Admin.findById(id);
+        req.flash("success", "Admin Deleted Success");
         if(admin){
 
             if(admin.profileImage != ""){
