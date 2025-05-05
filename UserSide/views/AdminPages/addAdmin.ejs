@@ -1,0 +1,125 @@
+<%- include('../header') %>
+
+<div class="page-wrapper" style="background: #f4f6f9; min-height: 100vh; display: flex; justify-content: center; align-items: center;">
+
+    <!-- Breadcrumb Section -->
+    <div class="page-breadcrumb" 
+         style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 20px 0; color: #fff; 
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); position: absolute; top: 0; width: 100%;">
+        <div class="row" style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <h4 class="page-title" style="font-size: 22px; font-weight: bold; letter-spacing: 1px;">Add Admin</h4>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb" style="background: none; margin-bottom: 0;">
+                    <li class="breadcrumb-item">
+                        <a href="/admin/view-admin" 
+                           style="color: #ffeb3b; text-decoration: none; font-weight: bold; transition: 0.3s;">Admin List</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page" style="color: #f1f1f1;">Add Admin</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Form Section -->
+    <div style="width: 550px; background: #ffffff; border-radius: 12px; 
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: 0.3s; overflow: hidden; margin-top: 100px;">
+
+        <form class="form-horizontal" action="/admin/add-admin" method="POST" enctype="multipart/form-data" 
+              style="padding: 30px; transition: 0.3s;">
+
+            <!-- Form Header -->
+            <h4 style="color: #4caf50; font-size: 20px; font-weight: bold; margin-bottom: 20px; 
+                       text-align: center; text-transform: uppercase; letter-spacing: 1px;">
+                 Admin Details
+            </h4>
+
+            <!-- First Name -->
+            <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; color: #495057; font-size: 14px;">First Name</label>
+                <input type="text" name="firstname" placeholder="First Name" required
+                       style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; 
+                              font-size: 13px; outline: none;">
+            </div>
+
+            <!-- Last Name -->
+            <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; color: #495057; font-size: 14px;">Last Name</label>
+                <input type="text" name="lastname" placeholder="Last Name" required
+                       style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; 
+                              font-size: 13px; outline: none;">
+            </div>
+
+            <!-- Email -->
+            <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; color: #495057; font-size: 14px;">Email</label>
+                <input type="email" name="email" placeholder="Email" required
+                       style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; 
+                              font-size: 13px; outline: none;">
+            </div>
+
+            <!-- Password -->
+            <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; color: #495057; font-size: 14px;">Password</label>
+                <input type="password" name="password" placeholder="Password" required
+                       style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; 
+                              font-size: 13px; outline: none;">
+            </div>
+
+            <!-- Gender -->
+            <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; color: #495057; font-size: 14px;">Gender</label>
+                <div style="display: flex; gap: 15px;">
+                    <div>
+                        <input type="radio" id="male" name="gender" value="Male" required>
+                        <label for="male" style="margin-left: 5px;">Male</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="female" name="gender" value="Female" required>
+                        <label for="female" style="margin-left: 5px;">Female</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hobbies -->
+            <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; color: #495057; font-size: 14px;">Hobbies</label>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <div>
+                        <input type="checkbox" id="reading" name="hobbies" value="Reading">
+                        <label for="reading" style="margin-left: 5px;">Reading</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="music" name="hobbies" value="Music">
+                        <label for="music" style="margin-left: 5px;">Music</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="traveling" name="hobbies" value="Traveling">
+                        <label for="traveling" style="margin-left: 5px;">Travelling</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Image -->   
+            <div style="margin-bottom: 20px;">
+                <label style="font-weight: bold; color: #495057; font-size: 14px;">Profile Image</label>
+                <input type="file" name="image" accept="image/*" 
+                       style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; 
+                              font-size: 13px; cursor: pointer; outline: none;">
+            </div>
+
+            <!-- Submit Button -->
+            <div style="text-align: center; margin-top: 15px;">
+                <button type="submit" 
+                        style="background: linear-gradient(135deg, #28a745, #218838); color: #fff; 
+                               padding: 12px 35px; border: none; border-radius: 6px; font-size: 14px; 
+                               cursor: pointer; transition: all 0.3s; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+                    ✅ Add Admin
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+<%- include('../footer') %>

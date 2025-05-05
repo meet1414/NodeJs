@@ -1,0 +1,47 @@
+<%- include('../header') %>
+<style>
+    .btn-primary {
+        background-color: #333;
+        border-color: #fff;
+        padding: 10px 25px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+   .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+</style>
+<div class="page-wrapper" style="background: #f4f6f9; padding: 40px;">
+  <div class="container-fluid" style="max-width: 600px; margin: 0 auto; background: #ffffff; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);">
+    <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">Edit Category</h2>
+
+    <form action="/category/edit-category/<%= category._id %>" method="POST" enctype="multipart/form-data">
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label style="font-weight: bold; color: #34495e;">Category Name:</label>
+        <input type="text" name="category" class="form-control" value="<%= category.category %>" required
+          style="padding: 10px; border-radius: 10px; border: 1px solid #ccc;" />
+      </div>
+
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label style="font-weight: bold; color: #34495e;">Current Image:</label><br />
+        <img src="<%= category.categoryImage %>" width="100" height="100" style="border-radius: 10px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
+      </div>
+
+      <div class="form-group" style="margin-bottom: 30px;">
+        <label style="font-weight: bold; color: #34495e;">Upload New Image (optional):</label>
+        <input type="file" name="categoryImage" class="form-control"
+          style="padding: 8px; border-radius: 10px; border: 1px solid #ccc;" />
+      </div>
+
+      <div style="text-align: center;">
+        <button type="submit" class="btn btn-primary">
+          Update Category
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('../footer') %>

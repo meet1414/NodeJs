@@ -1,0 +1,89 @@
+<%- include('../header') %>
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card" style="border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <form class="form-horizontal" action="/extracategory/add-extraCategory" method="post">
+                        <div class="card-body" style="padding: 30px;">
+                            <h4 class="card-title" style="text-align: center; margin-bottom: 30px;">Extra Category Info</h4>
+
+                            <div class="form-group row">
+                                <label for="categoryId" class="col-sm-3 text-right control-label col-form-label" style="font-weight: bold;">Category Name</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="categoryId" required style="border-radius: 5px;">
+                                        <option value="">Select Category</option>
+                                        <% categories.map((cat) => { %>
+                                            <option value="<%= cat._id %>"><%= cat.category %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="subCategoryId" class="col-sm-3 text-right control-label col-form-label" style="font-weight: bold;">Sub Category Name</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="subCategoryId" required style="border-radius: 5px">
+                                        <option value="">Select Sub Category</option>
+                                        <% subCategories.map((cat) => { %>
+                                            <option value="<%= cat._id %>"><%= cat.subCategory %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="extraCategory" class="col-sm-3 text-right control-label col-form-label" style="font-weight: bold;">Extra Category Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="extraCategory" name="extraCategory" placeholder="Extra Category Name Here" required style="border-radius: 5px;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-top" style="padding: 20px;">
+                            <div class="card-body text-right">
+                                <button type="submit" class="btn btn-primary" style="background-color: #3498db; border-radius: 30px; padding: 10px 20px; font-weight: bold;">Add Extra Category</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+</div>
+
+<%- include('../footer') %>

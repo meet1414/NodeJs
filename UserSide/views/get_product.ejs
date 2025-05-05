@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= product.title %> | Product Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2874f0;
+            --primary-orange: #fb641b;
+            --primary-green: #388e3c;
+            --light-gray: #f1f3f6;
+            --dark-gray: #878787;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            font-family: 'Poppins', sans-serif;
+            color: #212121;
+        }
+
+        .product-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 100%;
+            min-height: 400px;
+            object-fit: contain;
+            background-color: #fff;
+            padding: 30px;
+        }
+
+        .product-body {
+            padding: 30px;
+        }
+
+        .product-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #212121;
+        }
+
+        .product-description {
+            color: var(--dark-gray);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #eee;
+            margin: 25px 0;
+        }
+
+        .detail-label {
+            font-weight: 500;
+            color: #555;
+            display: inline-block;
+            width: 140px;
+        }
+
+        .detail-value {
+            color: #212121;
+        }
+
+        .price-tag {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin: 15px 0;
+        }
+
+        .quantity-badge {
+            font-size: 16px;
+            padding: 5px 15px;
+            background-color: #f5f5f5;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .btn-add-to-cart {
+            background-color: var(--primary-orange);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 500;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn-add-to-cart:hover {
+            background-color: #e55b15;
+            color: white;
+        }
+
+        .btn-back {
+            background-color: #fff;
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background-color: #e3f2fd;
+            color: var(--primary-blue);
+            padding: 5px 12px;
+            border-radius: 4px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .product-image {
+                min-height: 300px;
+                padding: 20px;
+            }
+            
+            .product-body {
+                padding: 20px;
+            }
+            
+            .product-title {
+                font-size: 24px;
+            }
+            
+            .price-tag {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="product-card bg-white">
+                    <div class="row g-0">
+                        <!-- Product Image -->
+                        <div class="col-md-5">
+                            <img src="<%= product.productImage %>" alt="<%= product.title %>" class="product-image w-100">
+                        </div>
+                        
+                        <!-- Product Details -->
+                        <div class="col-md-7">
+                            <div class="product-body">
+                                <h1 class="product-title"><%= product.title %></h1>
+                                
+                                <p class="product-description"><%= product.desc %></p>
+                                
+                                <div class="price-tag">₹<%= product.price %></div>
+                                
+                                <span class="quantity-badge">
+                                    <i class="fas fa-box-open me-2"></i>
+                                    <%= product.quantity %> units available
+                                </span>
+                                
+                                <div class="divider"></div>
+                                
+                                <div class="mb-4">
+                                    <div class="mb-2">
+                                        <span class="category-badge">
+                                            <i class="fas fa-tag me-1"></i>
+                                            <%= product.category && product.category.category ? product.category.category : 'N/A' %>
+                                        </span>
+                                        
+                                        <% if(product.subcategory && product.subcategory.subCategory) { %>
+                                            <span class="category-badge">
+                                                <i class="fas fa-tags me-1"></i>
+                                                <%= product.subcategory.subCategory %>
+                                            </span>
+                                        <% } %>
+                                        
+                                        <% if(product.extracategory && product.extracategory.extraCategory) { %>
+                                            <span class="category-badge">
+                                                <i class="fas fa-info-circle me-1"></i>
+                                                <%= product.extracategory.extraCategory %>
+                                            </span>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex flex-wrap gap-3 mt-4">
+                                    <a href="/user/add-cart/<%= product._id %>" class="btn btn-add-to-cart">
+                                        <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                                    </a>
+                                    <a href="/user" class="btn btn-back">
+                                        <i class="fas fa-arrow-left me-2"></i> Back to Products
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<%- include('../header') %>
+<style>
+    /* Root theme variables */
+:root {
+  --primary-color: #f7ca18; /* Yellow */
+  --secondary-color: #2c3e50;
+  --danger-color: #e74c3c;
+  --success-color: #27ae60;
+  --light-bg: #fdfdfd;
+  --text-dark: #2e2e2e;
+  --text-light: #6c757d;
+  --border-radius: 12px;
+  --shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Wrapper */
+.page-wrapper {
+  background-color: #f9f9f9;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+/* Card */
+.card {
+  border: none;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background-color: white;
+}
+
+/* Product Image */
+.card img {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+  object-fit: cover;
+  height: 100%;
+}
+
+/* Product Details */
+.card-body {
+  padding: 30px;
+}
+
+.card-title {
+  font-size: 28px;
+  color: var(--text-dark);
+}
+
+.text-muted {
+  color: var(--text-light) !important;
+  font-size: 1.05rem;
+}
+
+/* Info Texts */
+.card-body strong {
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+.card-body span {
+  font-size: 1rem;
+}
+
+/* Price */
+.text-success {
+  color: var(--success-color) !important;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* Black Button */
+.btn-black {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+}
+
+.btn-black:hover {
+  background-color: #e1b400;
+}
+
+/* White Button */
+.btn-white {
+  background-color: #fff;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-white:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .card .row.no-gutters {
+    flex-direction: column;
+  }
+
+  .card img {
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    height: 300px;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+}
+
+</style>
+   
+    <div class="page-wrapper">
+        <div class="container-fluid mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="card shadow-lg border-0 rounded">
+                        <div class="row no-gutters">
+                            <!-- Product Image -->
+                            <div class="col-md-5">
+                                <img src="<%= product.productImage %>" alt="<%= product.title %>"
+                                    class="img-fluid h-100 w-100"
+                                    style="object-fit: cover; border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;">
+                            </div>
+
+                            <!-- Product Details -->
+                            <div class="col-md-7">
+                                <div class="card-body">
+                                    <h2 class="card-title font-weight-bold text-dark mb-3">
+                                        <%= product.title %>
+                                    </h2>
+                                    
+                                    <p class="text-muted mb-4" style="font-size: 1.1rem;">
+                                        <%= product.desc %>
+                                    </p>
+                                    
+                                    <hr class="my-4" style="border-top: 2px solid #ccc;">
+                                    
+                                    <div class="mb-3">
+                                        <strong class="text-dark" style="font-size: 1.1rem;">Category:</strong> 
+                                        <span class="text-secondary" style="font-size: 1rem;"><%= product.category ? product.category.category : 'N/A' %></span><br>
+                                    
+                                        <strong class="text-dark" style="font-size: 1.1rem;">Subcategory:</strong> 
+                                        <span class="text-secondary" style="font-size: 1rem;"><%= product.subcategory ? product.subcategory.subCategory : 'N/A' %></span><br>
+                                    
+                                        <strong class="text-dark" style="font-size: 1.1rem;">Extra Category:</strong> 
+                                        <span class="text-secondary" style="font-size: 1rem;"><%= product.extracategory ? product.extracategory.extraCategory : 'N/A' %></span>
+
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <strong class="text-dark" style="font-size: 1.1rem;">Price:</strong> 
+                                        <span class="text-success" style="font-size: 16px; font-weight: 700;">₹ <%= product.price %></span><br>
+                                    
+                                        <strong class="text-dark" style="font-size: 1.1rem;">Available Quantity:</strong> 
+                                        <span class="text-muted" style="font-size: 1rem;"><%= product.quantity %> units</span>
+                                    </div>
+                                    
+
+                                    <div class="mt-4">
+                                        <a href="/product/edit/<%= product._id %>" class="btn btn-black btn-lg">Edit</a>
+                                        <a href="/product/delete/<%= product._id %>"
+                                            class="btn btn-white btn-lg ml-2">Delete</a>
+                                        <a href="/product/view-product" class="btn btn-black btn-lg ml-2">Back to
+                                            List</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../footer') %>

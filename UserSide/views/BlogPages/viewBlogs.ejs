@@ -1,0 +1,81 @@
+<%- include('../header') %>
+
+<div class="page-wrapper" style="background: #f4f6f9; min-height: 100vh; padding: 40px 0;">
+
+    <div class="container-fluid">
+
+        <div class="filter-section mb-4 p-4"
+    style="background: linear-gradient(135deg, #f0f0f0, #ffffff); 
+           box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+           border-radius: 12px; transition: 0.3s ease-in-out;">
+
+    <div class="d-flex flex-wrap justify-content-center gap-2">
+
+        <% const categories = ["All", "Finance", "Design and Development", "Fashion", "News", "Business", "Technology"]; %>
+
+        <% categories.forEach(cat => { %>
+            <a href="/blogs/view-blogs?category=<%= cat === 'All' ? '' : cat %>"
+               class="btn <%= category === cat ? 'btn-success' : 'btn-outline-success' %>"
+               style="padding: 10px 15px; font-size: 15px; border-radius: 8px; 
+                      transition: 0.3s; min-width: 120px; margin: 0px 10px;">
+                <%= cat %>
+            </a>
+        <% }) %>
+
+    </div>
+</div>
+
+   
+
+        <div class="row justify-content-center">
+            <% if (blogs && blogs.length > 0) { %>
+                <% blogs.forEach(blog => { %>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="card h-100 shadow-sm" 
+                         style="border-radius: 8px; overflow: hidden; transition: transform 0.3s ease; 
+                                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+
+               
+                        <img class="card-img-top" src="<%= blog.image %>" alt="Blog Image" 
+                             style="height: 200px; object-fit: cover;"> 
+
+                        <div class="card-body d-flex flex-column" style="padding: 15px;">
+                            <h5 class="card-title" style="font-size: 18px; font-weight: bold; color: #333;">
+                                <%= blog.title %>
+                            </h5>
+
+                            <p class="card-text" style="color: #555; font-size: 14px;">
+                                <strong>Author:</strong> <%= blog.author %>
+                            </p>
+
+                            <p class="card-text" style="font-size: 14px; color: #777;">
+                                Category: <%= blog.category %>
+                            </p>
+
+                            <a href="/blogs/single-blog/<%= blog._id %>" 
+                               class="btn btn-primary mt-auto" 
+                               style="background: linear-gradient(135deg, #4CAF50, #388E3C); 
+                                      color: #fff; border: none; padding: 10px 20px; 
+                                      font-size: 14px; border-radius: 6px; transition: 0.3s;">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <% }) %>
+            <% } else { %>
+                <div class="col-12 text-center">
+                    <div class="alert alert-warning" role="alert" 
+                         style="font-size: 18px; color: #121111; background-color: #fff; 
+                                border: 1px solid #040404; border-radius: 8px; padding: 20px;">
+                       No blogs found in "<%= category %>" category.
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<%- include('../footer') %>

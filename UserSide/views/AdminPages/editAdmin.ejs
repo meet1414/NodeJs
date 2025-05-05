@@ -1,0 +1,144 @@
+<%- include('../header') %>
+
+<div class="page-wrapper" style="background: #f4f6f9; min-height: 100vh; padding: 30px;">
+
+    <!-- Breadcrumb Section -->
+    <div class="page-breadcrumb" 
+         style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 20px; color: #fff; 
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); border-radius: 10px;">
+        <div class="row" style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <h4 class="page-title" style="font-size: 22px; font-weight: bold; letter-spacing: 1px;">✏️ Edit Admin</h4>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb" style="background: none; margin-bottom: 0;">
+                    <li class="breadcrumb-item">
+                        <a href="/admin" 
+                           style="color: #ffeb3b; text-decoration: none; font-weight: bold; transition: 0.3s;">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page" style="color: #f1f1f1;">Edit Admin</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="container-fluid" style="max-width: 1000px; margin: 40px auto;">
+        <div class="card" style="border: none; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); border-radius: 12px;">
+            <form class="form-horizontal" action="/admin/update-admin/<%= admin._id %>" method="POST" enctype="multipart/form-data">
+
+                <div class="card-body" style="padding: 30px;">
+                    <h4 class="card-title" style="font-size: 24px; font-weight: bold; color: #4caf50;">👤 Personal Info</h4>
+
+                    <!-- First Name -->
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="fname" name="firstname" 
+                                   value="<%= admin.firstname %>" required 
+                                   style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                        </div>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="lname" name="lastname" 
+                                   value="<%= admin.lastname %>" required 
+                                   style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-3 text-right control-label col-form-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="email" name="email" 
+                                   value="<%= admin.email %>" required
+                                   style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                        </div>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="form-group row">
+                        <label class="col-sm-3 text-right control-label col-form-label">Gender</label>
+                        <div class="col-md-9" style="display: flex; gap: 20px;">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="genderMale" name="gender" value="male"
+                                       <%= (admin.gender && admin.gender.trim().toLowerCase() === 'male') ? 'checked' : '' %>>
+                                <label class="custom-control-label" for="genderMale">Male</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="genderFemale" name="gender" value="female"
+                                       <%= (admin.gender && admin.gender.trim().toLowerCase() === 'female') ? 'checked' : '' %>>
+                                <label class="custom-control-label" for="genderFemale">Female</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hobbies -->
+                    <div class="form-group row">
+                        <label class="col-sm-3 text-right control-label col-form-label">Hobbies</label>
+                        <div class="col-md-9" style="display: flex; gap: 20px; flex-wrap: wrap;">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="hobbyTravelling" name="hobbies" value="Travelling"
+                                       <%= admin.hobbies.includes("Travelling") ? "checked" : "" %>>
+                                <label class="custom-control-label" for="hobbyTravelling">Travelling</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="hobbymusic" name="hobbies" value="music"
+                                       <%= admin.hobbies.includes("music") ? "checked" : "" %>>
+                                <label class="custom-control-label" for="hobbymusic">Music</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="hobbyCooking" name="hobbies" value="Cooking"
+                                       <%= admin.hobbies.includes("Cooking") ? "checked" : "" %>>
+                                <label class="custom-control-label" for="hobbyCooking">Cooking</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Picture -->
+                    <div class="form-group row">
+                        <label class="col-sm-3 text-right control-label col-form-label">Profile Picture</label>
+                        <div class="col-md-9">
+                            <% if (admin.image) { %>
+                                <img src="/uploads/<%= admin.image %>" id="profilePreview" 
+                                     width="120" height="120" class="rounded-circle mb-3" 
+                                     style="box-shadow: 0 4px 12px rgba(0,0,0,0.2); object-fit: cover;">
+                            <% } else { %>
+                                <img src="/images/default-avatar.png" id="profilePreview" 
+                                     width="120" height="120" class="rounded-circle mb-3" 
+                                     style="box-shadow: 0 4px 12px rgba(0,0,0,0.2); object-fit: cover;">
+                            <% } %>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="imageUpload" name="image" onchange="previewImage(event)">
+                                <label class="custom-file-label" for="imageUpload">Choose file...</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="border-top" style="background: #f1f1f1; padding: 20px;">
+                    <div class="card-body text-right">
+                        <button type="submit" class="btn btn-success" style="padding: 10px 25px;">✔️ Update Admin</button>
+                        <a href="/admin/view-admin" class="btn btn-secondary" style="padding: 10px 25px;">❌ Cancel</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../footer') %>
+
+<script>
+    function previewImage(event) {
+        const reader = new FileReader();
+        reader.onload = function () {
+            document.getElementById('profilePreview').src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>

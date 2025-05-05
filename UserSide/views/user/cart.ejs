@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart | ShopEasy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6c63ff;
+            --secondary-color: #4d44db;
+            --accent-color: #ff6584;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7ff;
+            color: #333;
+        }
+
+        .cart-container {
+            background: #fff;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .cart-container:hover {
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+        }
+
+        .cart-header {
+            font-weight: 700;
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .cart-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .empty-cart-icon {
+            font-size: 80px;
+            color: #e0e0e0;
+            margin-bottom: 25px;
+            transition: var(--transition);
+        }
+
+        .empty-cart:hover .empty-cart-icon {
+            transform: translateY(-5px);
+            color: #d0d0d0;
+        }
+
+        .btn-continue {
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: var(--border-radius);
+            padding: 12px 25px;
+            font-weight: 500;
+            transition: var(--transition);
+            text-decoration: none;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-continue:hover {
+            background-color: var(--secondary-color);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+        }
+
+        .btn-checkout {
+            background-color: var(--accent-color);
+            color: #fff;
+            border-radius: var(--border-radius);
+            padding: 12px 25px;
+            font-weight: 500;
+            transition: var(--transition);
+            text-decoration: none;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 15px;
+        }
+
+        .btn-checkout:hover {
+            background-color: #ff4d6d;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 101, 132, 0.3);
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 30px;
+        }
+
+        .cart-table th {
+            background-color: #f8f9fa;
+            color: #495057;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            padding: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .cart-table td {
+            padding: 20px 15px;
+            border-bottom: 1px solid #e9ecef;
+            vertical-align: middle;
+        }
+
+        .cart-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cart-table tr:hover td {
+            background-color: #fafbff;
+        }
+
+        .product-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .product-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .product-title {
+            font-weight: 600;
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+
+        .product-title:hover {
+            color: var(--primary-color);
+        }
+
+        .product-price,
+        .total-price {
+            color: var(--success-color);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            background-color: #f1f3f5;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .quantity-value {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .remove-btn {
+            color: #adb5bd;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 5px;
+        }
+
+        .remove-btn:hover {
+            color: var(--danger-color);
+            transform: scale(1.2);
+        }
+
+        .grand-total {
+            font-size: 24px;
+            color: var(--dark-color);
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+        .grand-total-amount {
+            color: var(--accent-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .action-buttons .btn-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .cart-table thead {
+                display: none;
+            }
+
+            .cart-table tr {
+                display: block;
+                margin-bottom: 20px;
+                border: 1px solid #dee2e6;
+                border-radius: var(--border-radius);
+                overflow: hidden;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+                padding: 15px;
+            }
+
+            .cart-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px 15px;
+                border-bottom: 1px solid #f1f3f5;
+            }
+
+            .cart-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #888;
+                margin-right: 15px;
+                min-width: 80px;
+            }
+
+            .product-img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .action-buttons .btn-group {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .btn-checkout {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cart-item {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .cart-item:nth-child(1) { animation-delay: 0.1s; }
+        .cart-item:nth-child(2) { animation-delay: 0.2s; }
+        .cart-item:nth-child(3) { animation-delay: 0.3s; }
+        .cart-item:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="cart-container">
+            <h2 class="cart-header">
+                <i class="fas fa-shopping-cart me-2"></i>Your Shopping Cart
+            </h2>
+
+            <% if (cart.length === 0) { %>
+                <div class="empty-cart">
+                    <div class="empty-cart-icon">
+                        <i class="fas fa-shopping-basket"></i>
+                    </div>
+                    <h4 class="mb-3">Your cart is empty</h4>
+                    <p class="text-muted mb-4">Looks like you haven't added anything to your cart yet</p>
+                    <a href="/user" class="btn btn-continue">
+                        <i class="fas fa-arrow-left me-2"></i>Continue Shopping
+                    </a>
+                </div>
+            <% } else { %>
+                <div class="table-responsive">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% let total = 0; %>
+                            <% cart.forEach((item, index) => {
+                                total += item.price * item.quantity;
+                            %>
+                                <tr class="cart-item">
+                                    <td data-label="Product">
+                                        <div class="d-flex align-items-center">
+                                            <img src="<%= item.image %>" alt="<%= item.title %>" class="product-img me-3">
+                                            <span class="product-title"><%= item.title %></span>
+                                        </div>
+                                    </td>
+                                    <td data-label="Price" class="product-price">₹<%= item.price.toFixed(2) %></td>
+                                    <td data-label="Quantity">
+                                        <div class="quantity-control">
+                                            <button class="quantity-btn minus-btn" data-id="<%= item.id %>">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <span class="quantity-value" id="quantity-<%= item.id %>"><%= item.quantity %></span>
+                                            <button class="quantity-btn plus-btn" data-id="<%= item.id %>">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td data-label="Total" class="total-price" id="total-<%= item.id %>">₹<%= (item.price * item.quantity).toFixed(2) %></td>
+                                    <td>
+                                        <button class="remove-btn" data-id="<%= item.id %>">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <div>
+                        <h4 class="grand-total">Grand Total: <span class="grand-total-amount">₹<%= total.toFixed(2) %></span></h4>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="/user" class="btn btn-continue">
+                        <i class="fas fa-arrow-left me-2"></i>Continue Shopping
+                    </a>
+                    <div class="btn-group">
+                        <button class="btn btn-checkout">
+                            <i class="fas fa-credit-card me-2"></i>Proceed to Checkout
+                        </button>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Quantity increase functionality
+            document.querySelectorAll('.plus-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-id');
+                    const quantityElement = document.getElementById(`quantity-${productId}`);
+                    let quantity = parseInt(quantityElement.textContent);
+                    quantity++;
+                    quantityElement.textContent = quantity;
+                    updateItemTotal(productId, quantity);
+                    updateGrandTotal();
+                });
+            });
+
+            // Quantity decrease functionality
+            document.querySelectorAll('.minus-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-id');
+                    const quantityElement = document.getElementById(`quantity-${productId}`);
+                    let quantity = parseInt(quantityElement.textContent);
+                    
+                    if (quantity > 1) {
+                        quantity--;
+                        quantityElement.textContent = quantity;
+                        updateItemTotal(productId, quantity);
+                        updateGrandTotal();
+                    }
+                });
+            });
+
+            // Remove item functionality
+            document.querySelectorAll('.remove-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-id');
+                    const row = this.closest('tr');
+                    
+                    // Add animation before removal
+                    row.style.opacity = '0';
+                    row.style.transform = 'translateX(50px)';
+                    row.style.transition = 'all 0.3s ease';
+                    
+                    setTimeout(() => {
+                        row.remove();
+                        updateGrandTotal();
+                    }, 300);
+                });
+            });
+
+            // Function to update item total
+            function updateItemTotal(productId, quantity) {
+                // In a real app, you would fetch the price from your data or an API
+                // For this example, we'll get it from the price cell
+                const priceText = document.querySelector(`#total-${productId}`).textContent;
+                const price = parseFloat(priceText.replace('₹', '')) / (quantity - 1 || 1); // Get original price
+                const total = price * quantity;
+                document.getElementById(`total-${productId}`).textContent = `₹${total.toFixed(2)}`;
+            }
+
+            // Function to update grand total
+            function updateGrandTotal() {
+                let grandTotal = 0;
+                document.querySelectorAll('.total-price').forEach(element => {
+                    const total = parseFloat(element.textContent.replace('₹', ''));
+                    grandTotal += total;
+                });
+                
+                document.querySelector('.grand-total-amount').textContent = `₹${grandTotal.toFixed(2)}`;
+            }
+        });
+    </script>
+</body>
+</html>

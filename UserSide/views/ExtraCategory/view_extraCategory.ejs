@@ -1,0 +1,160 @@
+<%- include('../header') %>
+
+<style>
+    .card {
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+
+    .table {
+        border: 1px solid #dee2e6;
+    }
+
+    .table th{
+        background-color: #ffc107;
+        color: #212529;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .table img {
+        height: 80px;
+        width: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn {
+        font-size: 0.875rem;
+        padding: 5px 10px;
+        margin: 2px;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background-color: #bd2130;
+    }
+
+    .action-icons i {
+        margin-right: 5px;
+    }
+</style>
+
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <!-- Breadcrumb removed for simplicity -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- Container fluid -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title m-b-0">Extra Category Information</h5>
+                    </div>
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Category Name</th>
+                                <th scope="col">Category Image</th>
+                                <th scope="col">Sub Category Name</th>
+                                <th scope="col">Extra Category Name</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% extraCategories.map((extraCate, i) => { %>
+                                <tr>
+                                    <td><%= i + 1 %></td>
+                                    <td><%= extraCate.categoryId.category %></td>
+                                    <td>
+                                        <img src="<%= extraCate.categoryId.categoryImage %>" height="80" />
+                                    </td>
+                                    <td><%= extraCate.subCategoryId && extraCate.subCategoryId.subCategory || 'No SubCategory' %></td>
+                                    <td><%= extraCate.extraCategory %></td>
+                                    <td class="action-icons">
+                                        <a href="/extracategory/edit-extraCategory/<%= extraCate._id %>" 
+                                           class="btn btn-sm btn-primary d-flex align-items-center" 
+                                           title="Edit">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+
+                                        <a href="/extracategory/delete-extraCategory/<%= extraCate._id %>" 
+                                           class="btn btn-sm btn-danger d-flex align-items-center" 
+                                           onclick="return confirm('Are you sure you want to delete this item?');" 
+                                           title="Delete">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid -->
+    <!-- ============================================================== -->
+</div>
+
+<%- include('../footer') %>

@@ -1,0 +1,81 @@
+<%- include('../header') %>
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+
+        <!-- Page Title with Add Button -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2 style="color: #007bff; font-weight: bold;">📝 Manage Blogs</h2>
+            <a href="/blogs/add-blog" 
+               style="text-decoration: none; padding: 10px 20px; background: #28a745; color: #fff; border-radius: 5px; 
+                      display: inline-flex; align-items: center; transition: 0.3s;">
+                <i class="mdi mdi-plus" style="margin-right: 5px;"></i> Add New Blog
+            </a>
+        </div>
+
+        <!-- Blog List Card -->
+        <div style="box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; background: #fff;">
+            <div style="padding: 20px;">
+
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="background: #007bff; color: #fff;">
+                                <th style="padding: 12px;">#</th>
+                                <th style="padding: 12px;">Image</th>
+                                <th style="padding: 12px;">Title</th>
+                                <th style="padding: 12px;">Author</th>
+                                <th style="padding: 12px;">Category</th>
+                                <th style="padding: 12px;">Created At</th>
+                                <th style="padding: 12px; text-align: center;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (blogs.length > 0) { %>
+                                <% blogs.forEach((blog, index) => { %>
+                                    <tr style="border-bottom: 1px solid #e1e1e1; transition: background 0.3s;">
+                                        <td style="padding: 12px; text-align: center;"><%= index + 1 %></td>
+                                        <td style="padding: 12px;">
+                                            <img src="<%= blog.image.startsWith('/uploads/') ? blog.image : '/uploads/' + blog.image %>" 
+                                                 style="width: 100px; height: 60px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" 
+                                                 alt="Blog Image">
+                                        </td>
+                                        <td style="padding: 12px; font-weight: bold;"><%= blog.title %></td>
+                                        <td style="padding: 12px; color: #17a2b8;"><%= blog.author %></td>
+                                        <td style="padding: 12px;">
+                                            <span style="display: inline-block; background: #28a745; color: #fff; padding: 5px 10px; border-radius: 15px; font-size: 14px;">
+                                                <%= blog.category %>
+                                            </span>
+                                        </td>
+                                        <td style="padding: 12px;"><%= blog.createdAt ? new Date(blog.createdAt).toDateString() : 'N/A' %></td>
+                                        <td style="padding: 12px; text-align: center;">
+                                            <a href="/blogs/edit-blog/<%= blog._id %>" 
+                                               style="text-decoration: none; padding: 8px 15px; background: #ffc107; color: #fff; border-radius: 5px; margin-right: 5px; 
+                                                      transition: 0.3s; display: inline-block;">
+                                                <i class="mdi mdi-pencil"></i> Edit
+                                            </a>
+                                            <a href="/blogs/delete-blog/<%= blog._id %>" 
+                                               style="text-decoration: none; padding: 8px 15px; background: #dc3545; color: #fff; border-radius: 5px; 
+                                                      transition: 0.3s; display: inline-block;">
+                                                <i class="mdi mdi-delete"></i> Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <% }); %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="7" style="padding: 20px; text-align: center; color: #6c757d;">
+                                        <i class="mdi mdi-alert-circle-outline"></i> No blogs found.
+                                    </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('../footer') %>

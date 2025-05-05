@@ -1,0 +1,145 @@
+<%- include('../header') %>
+<style>
+    /* Theme colors and general resets */
+:root {
+  --primary-color: #f7ca18; /* Flipkart Yellow */
+  --secondary-color: #2c3e50;
+  --form-bg: #ffffff;
+  --input-border: #ced4da;
+  --input-focus: #f7ca18;
+  --btn-hover: #e1b400;
+  --text-muted: #6c757d;
+}
+
+body {
+  background-color: #f4f4f4;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.form-container {
+  background-color: var(--form-bg);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Headline */
+.form-container h2 {
+  color: var(--secondary-color);
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+/* Input & Select */
+.form-control,
+.form-select {
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 0.1rem rgba(247, 202, 24, 0.25);
+}
+
+/* Label styling */
+.form-label {
+  font-weight: 500;
+  color: var(--secondary-color);
+  margin-bottom: 6px;
+}
+
+/* Submit Button */
+.btn-custom {
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: var(--btn-hover);
+}
+
+/* Responsive margin fix for inline style */
+@media (max-width: 992px) {
+  .container {
+    margin-left: 0 !important;
+  }
+}
+
+</style>
+
+<div class="container mt-5 mb-5" style="margin-left: 400px;">
+    <div class="col-md-10 offset-md-1 form-container">
+        <h2>Edit Product</h2>
+        <form action="/product/edit/<%= product._id %>" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text" name="title" class="form-control" value="<%= product.title %>" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea name="desc" class="form-control" rows="4" required><%= product.desc %></textarea>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-md-6">
+                    <label class="form-label">Price</label>
+                    <input type="number" name="price" class="form-control" value="<%= product.price %>" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Quantity</label>
+                    <input type="number" name="quantity" class="form-control" value="<%= product.quantity %>" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Category</label>
+                <select name="category" class="form-select" required>
+                    <% categories.forEach(cat => { %>
+                        <option value="<%= cat._id %>" <%= cat._id.toString() === product.category.toString() ? 'selected' : '' %>><%= cat.category %></option>
+                    <% }); %>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Subcategory</label>
+                <select name="subcategory" class="form-select" required>
+                    <% subcategories.forEach(sub => { %>
+                        <option value="<%= sub._id %>" <%= sub._id.toString() === product.subcategory.toString() ? 'selected' : '' %>><%= sub.subCategory %></option>
+                    <% }); %>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Extra Category</label>
+                <select name="extracategory" class="form-select" required>
+                    <% extracategories.forEach(extra => { %>
+                        <option value="<%= extra._id %>" <%= extra._id.toString() === product.extracategory.toString() ? 'selected' : '' %>><%= extra.extraCategory %></option>
+                    <% }); %>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Change Image (optional)</label>
+                <input type="file" name="productImage" class="form-control">
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-custom">Update Product</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<%- include('../footer') %>
